@@ -4,13 +4,15 @@ import {
   PizzaService2,
   PizzaService3,
 } from "../servicios/pizza-service.js";
+import { AuthMiddleware } from "../auth/authMiddleware.js";
 
 const router = express.Router();
 const pizzaService = new PizzaService();
 
-router.get("/", (request, response) => {
+router.get("/", AuthMiddleware, (request, response) => {
   const limit = request.query.limit;
   const offset = request.query.offset;
+  request.user;
 
   //Verificar si limit y offset son numeros y existen
 
